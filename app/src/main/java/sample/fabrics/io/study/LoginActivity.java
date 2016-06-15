@@ -8,7 +8,7 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.app.LoaderManager.LoaderCallbacks;
-
+import android.content.Intent;
 import android.content.CursorLoader;
 import android.content.Loader;
 import android.database.Cursor;
@@ -30,7 +30,12 @@ import android.widget.EditText;
 import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
+<<<<<<< HEAD
 import static android.Manifest.permission.READ_CONTACTS;
+=======
+
+import sample.fabrics.io.study.R;import static android.Manifest.permission.READ_CONTACTS;
+>>>>>>> 64a0d3a61f2914e432376a44883621b5a6aa2c75
 
 /**
  * A login screen that offers login via email/password.
@@ -84,7 +89,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         mEmailSignInButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                attemptLogin();
+                Intent i = new Intent(LoginActivity.this, TimerActivity.class);
+                startActivity(i);
             }
         });
 
@@ -188,12 +194,15 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         }
     }
     private boolean isEmailValid(String email) {
-        //TODO: Replace this with your own logic
+        //TODO: Replace this with more logic / justifications
+        //but this basically says it is an email if it contains
+        //an "@"
         return email.contains("@");
     }
 
     private boolean isPasswordValid(String password) {
-        //TODO: Replace this with your own logic
+        //TODO: Replace this with more justification
+        //this basically states that it is not a password if length is less than 4
         return password.length() > 4;
     }
 
