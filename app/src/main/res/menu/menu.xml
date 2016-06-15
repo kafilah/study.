@@ -6,4 +6,7 @@
         android:icon="@drawable/ic_action_plus"
         android:title = "navigate to other activity"
         app:showAsAction= "ifRoom"/>
+
+    <!-- hahahahahah -->
+
 </menu>
