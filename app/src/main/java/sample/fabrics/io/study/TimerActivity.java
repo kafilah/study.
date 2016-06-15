@@ -71,6 +71,8 @@ public class TimerActivity extends AppCompatActivity {
                 start.setText("Start");
                 handler.removeCallbacks(updateTimer);
                 timer.setText("00:00:00");
+                Intent i = new Intent(TimerActivity.this, LogView.class);
+                startActivity(i);
             }});
     }
 
@@ -94,7 +96,6 @@ public class TimerActivity extends AppCompatActivity {
         inflater.inflate(R.menu.menu, menu);
         return true;
     }
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item){
         switch(item.getItemId()){
