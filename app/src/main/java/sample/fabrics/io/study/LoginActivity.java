@@ -30,8 +30,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
-
-import sample.fabrics.io.testmain.R;import static android.Manifest.permission.READ_CONTACTS;
+import static android.Manifest.permission.READ_CONTACTS;
 
 /**
  * A login screen that offers login via email/password.
