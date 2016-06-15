@@ -22,7 +22,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-<<<<<<< HEAD
         <activity android:name=".LogView" />
         <activity
             android:name=".ScrollingActivity"
@@ -36,10 +35,8 @@
             <category android:name="android.intent.category.LAUNCHER" />
         </intent-filter>
         </activity>
-=======
         <activity android:name=".logVIew" />
         <activity android:name=".LogView"></activity>
->>>>>>> a61fb40fba32ecf7426ea8ae85248c63bea98e91
     </application>
 
 
