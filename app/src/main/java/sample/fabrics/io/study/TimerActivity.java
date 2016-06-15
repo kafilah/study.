@@ -1,5 +1,6 @@
 package sample.fabrics.io.study;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
@@ -97,8 +98,8 @@ public class TimerActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item){
         switch(item.getItemId()){
             case R.id.menu_plus_button:
-                //Intent i = new Intent(TimerActivity.this, logVIew.class);
-                //startActivity(i);
+                Intent i = new Intent(TimerActivity.this, LogView.class);
+                startActivity(i);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
