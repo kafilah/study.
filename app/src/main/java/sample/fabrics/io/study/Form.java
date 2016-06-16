@@ -1,6 +1,7 @@
 package sample.fabrics.io.study;
 
 /**
+<<<<<<< HEAD
  * Created by earlybirdcamp on 6/15/16.
  */
 public class Form {
@@ -55,5 +56,18 @@ public class Form {
             System.out.println(_group);
             System.out.println(_productivity);
         }
+=======
+ * Created by earlybirdcamp on 6/16/16.
+ */
+public class Form {
+
+
+
+    public Form(){
+
+    }
+
+
+>>>>>>> 3a83d5b41649a41b5371e2eeeac4171c8b88282f
 
 }

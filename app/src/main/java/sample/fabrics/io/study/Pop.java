@@ -14,6 +14,7 @@ import android.widget.*;
  */
 public class Pop extends Activity {
 
+<<<<<<< HEAD
 
     EditText _location;
     RadioGroup _group;
@@ -55,13 +56,37 @@ public class Pop extends Activity {
 
 
 
+=======
+        User u = new User();
+    
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.popwindow);
+//         submit button
+        Button b_submit = (Button) findViewById(R.id.submitForm);
+
+        b_submit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Pop.this, LogView.class));
+            }
+        });
+
+>>>>>>> 3a83d5b41649a41b5371e2eeeac4171c8b88282f
         DisplayMetrics dm = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(dm);
 
         int width = dm.widthPixels;
         int height = dm.heightPixels;
+<<<<<<< HEAD
         getWindow().setLayout((int) (width*.8), (int) (height*.6));
     }
+=======
+
+        getWindow().setLayout((int) (width*.8), (int) (height*.6));
+        }
+>>>>>>> 3a83d5b41649a41b5371e2eeeac4171c8b88282f
 
     // radio buttons
 

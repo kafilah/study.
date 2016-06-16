@@ -14,12 +14,16 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+//import com.github.lzyzsd.circleprogress.DonutProgress;
+
 
 public class TimerActivity extends AppCompatActivity {
 
     Button start;
     Button stop;
     TextView timer;
+    TextView tips;
+    //DonutProgress donut;
     long startTime = 0L;
     long timeInMilliseconds = 0L;
     long timeSwapBuff = 0L;
@@ -35,9 +39,12 @@ public class TimerActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_timer);
+        //donut = (DonutProgress) findViewById(R.id.donut_progress);
         start = (Button) findViewById(R.id.start);
         stop = (Button) findViewById(R.id.stop);
         timer = (TextView) findViewById(R.id.textView);
+        tips = (TextView) findViewById(R.id.tip);
+        tips.setText(HelpfulTips.getTip());
         start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -71,7 +78,7 @@ public class TimerActivity extends AppCompatActivity {
                 start.setText("Start");
                 handler.removeCallbacks(updateTimer);
                 timer.setText("00:00:00");
-                Intent i = new Intent(TimerActivity.this, LogView.class);
+                Intent i = new Intent(TimerActivity.this, Pop.class);
                 startActivity(i);
             }});
     }
@@ -84,6 +91,7 @@ public class TimerActivity extends AppCompatActivity {
             mins = secs / 60;
             secs = secs % 60;
             hour = mins / 60;
+            //donut.setProgress(donut.getProgress() + 2);
             timer.setText(""+ String.format("%02d", hour) + ":" + String.format("%02d", mins) + ":" + String.format("%02d", secs));
             timer.setTextColor(Color.RED);
             handler.postDelayed(this, 0);
