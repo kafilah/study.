@@ -15,7 +15,7 @@ import android.widget.*;
 public class Pop extends Activity {
 
         User u = new User();
-
+    
     @Override
         protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
