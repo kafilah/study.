@@ -22,8 +22,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+<<<<<<< HEAD
 
 
+=======
+<<<<<<< HEAD
+        <activity android:name=".Pop"
+            android:theme="@style/AppTheme.CustomTheme">
+        </activity>
+
+=======
+>>>>>>> c07db1ef2c510f2c4780c2d7628283ee9870a177
         <activity android:name=".LogView" />
         <activity
             android:name=".ScrollingActivity"
@@ -37,10 +46,16 @@
             <category android:name="android.intent.category.LAUNCHER" />
         </intent-filter>
         </activity>
+<<<<<<< HEAD
 
         <activity android:name=".logVIew" />
         </activity>
 
+=======
+        <activity android:name=".logVIew" />
+        <activity android:name=".LogView"></activity>
+>>>>>>> dc4e9d7c28327283bf28072b43dac41d4ac0ff53
+>>>>>>> c07db1ef2c510f2c4780c2d7628283ee9870a177
     </application>
 
 
