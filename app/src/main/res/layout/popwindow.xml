@@ -10,10 +10,27 @@
         android:textSize="11pt"
         android:textStyle="bold"
         android:textAlignment="center"/>
+    
+    <TextView
+        android:id="@+id/timerTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/reflection"
+        android:text="@string/timer_label"
+        style="?android:listSeparatorTextViewStyle"/>
+    
+    <TextView
+        android:id="@+id/timer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/timerTitle"
+        android:text="@string/timer_text"
+        android:textSize="9pt"/>
+    
 
     <TextView
         android:id="@+id/location"
-        android:layout_below="@+id/reflection"
+        android:layout_below="@+id/timer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/location_label"

@@ -15,21 +15,17 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-<<<<<<< HEAD
         <activity android:name=".Pop"
             android:theme="@style/AppTheme.CustomTheme">
         </activity>
 
-
-=======
->>>>>>> 3a83d5b41649a41b5371e2eeeac4171c8b88282f
         <activity android:name=".LogView" />
         <activity
             android:name=".TimerActivity"
@@ -40,15 +36,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-<<<<<<< HEAD
-        <activity android:name=".logVIew" />
-        <activity android:name=".LogView"></activity>
-=======
-        <activity android:name=".Pop"
-            android:theme="@style/AppTheme.CustomTheme">
-        </activity>
         <activity android:name=".RegisterActivity"></activity>
->>>>>>> 3a83d5b41649a41b5371e2eeeac4171c8b88282f
     </application>
 
 </manifest>

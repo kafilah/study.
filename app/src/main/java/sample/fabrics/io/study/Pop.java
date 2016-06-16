@@ -14,7 +14,6 @@ import android.widget.*;
  */
 public class Pop extends Activity {
 
-<<<<<<< HEAD
 
     EditText _location;
     RadioGroup _group;
@@ -22,6 +21,8 @@ public class Pop extends Activity {
     RadioButton _groupChosen;
     RadioButton _productivityChosen;
     EditText _comments;
+    TextView _timer;
+    String _time;
 
 
 
@@ -35,58 +36,25 @@ public class Pop extends Activity {
         _group = (RadioGroup) findViewById(R.id.ppl_group);
         _productivity = (RadioGroup) findViewById(R.id.pro_group);
         _comments = (EditText) findViewById(R.id.notes);
+        _timer = (TextView) findViewById(R.id.timer);
         b_submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                  if((_group.getCheckedRadioButtonId()) == -1 || _productivity.getCheckedRadioButtonId() == -1)
-                {
-                   Toast.makeText(getApplicationContext(), "Please fill out the entire form.", Toast.LENGTH_LONG).show();
+                if ((_group.getCheckedRadioButtonId()) == -1 || _productivity.getCheckedRadioButtonId() == -1 || _time == null) {
+                    Toast.makeText(getApplicationContext(), "Please fill out the entire form.", Toast.LENGTH_LONG).show();
+                } else {
+                    String mLocation = _location.getText().toString();
+                    String mGroup = _groupChosen.getText().toString();
+                    String mProd = _productivityChosen.getText().toString();
+                    String mComments = _comments.getText().toString();
+                    String mTime = _time;
+                    Form form = new Form(mLocation, mGroup, mProd, mComments, mTime);
+                    form.showMe();
+                    startActivity(new Intent(Pop.this, LogView.class));
                 }
-                else {
-                      String mLocation = _location.getText().toString();
-                      String mGroup = _groupChosen.getText().toString();
-                      String mProd = _productivityChosen.getText().toString();
-                      String mComments = _comments.getText().toString();
-                      Form form = new Form(mLocation, mGroup, mProd, mComments);
-                      form.showMe();
-
-                  }
             }
         });
-
-
-
-=======
-        User u = new User();
-    
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.popwindow);
-//         submit button
-        Button b_submit = (Button) findViewById(R.id.submitForm);
-
-        b_submit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(Pop.this, LogView.class));
-            }
-        });
-
->>>>>>> 3a83d5b41649a41b5371e2eeeac4171c8b88282f
-        DisplayMetrics dm = new DisplayMetrics();
-        getWindowManager().getDefaultDisplay().getMetrics(dm);
-
-        int width = dm.widthPixels;
-        int height = dm.heightPixels;
-<<<<<<< HEAD
-        getWindow().setLayout((int) (width*.8), (int) (height*.6));
     }
-=======
-
-        getWindow().setLayout((int) (width*.8), (int) (height*.6));
-        }
->>>>>>> 3a83d5b41649a41b5371e2eeeac4171c8b88282f
 
     // radio buttons
 
@@ -104,13 +72,11 @@ public class Pop extends Activity {
             case R.id.ppl_button1:
                 if (checked)
                     // Single studying
-                    //u.setGroup("single");
                     _groupChosen = (RadioButton) findViewById(_group.getCheckedRadioButtonId());
                     break;
             case R.id.ppl_button2:
                 if (checked)
                     // Group studying
-                    //u.setGroup("group");
                     _groupChosen = (RadioButton) findViewById(_group.getCheckedRadioButtonId());
                     break;
 
@@ -119,24 +85,29 @@ public class Pop extends Activity {
             case R.id.pro_button1:
                 if (checked)
                     // low
-                    //u.setProductivity("low");
                     _productivityChosen = (RadioButton) findViewById(_productivity.getCheckedRadioButtonId());
                     break;
             case R.id.pro_button2:
                 if (checked)
                     // medium
-                    //u.setProductivity("medium");
                     _productivityChosen = (RadioButton) findViewById(_productivity.getCheckedRadioButtonId());
                     break;
 
             case R.id.pro_button3:
                 if (checked)
                     // high
-                    //u.setProductivity("high");
                     _productivityChosen = (RadioButton) findViewById(_productivity.getCheckedRadioButtonId());
                     break;
         }
 
+    }
+
+
+    @Override
+    protected void onResume(){
+        super.onResume();
+        _time = getIntent().getStringExtra("timerTime");
+        _timer.setText(_time);
     }
 
 }

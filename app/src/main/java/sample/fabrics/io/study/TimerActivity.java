@@ -14,9 +14,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-//import com.github.lzyzsd.circleprogress.DonutProgress;
-
-
 public class TimerActivity extends AppCompatActivity {
 
     Button start;
@@ -77,8 +74,10 @@ public class TimerActivity extends AppCompatActivity {
                 milliseconds = 0;
                 start.setText("Start");
                 handler.removeCallbacks(updateTimer);
+                String oldTime = timer.getText().toString();
                 timer.setText("00:00:00");
                 Intent i = new Intent(TimerActivity.this, Pop.class);
+                i.putExtra("timerTime", oldTime);
                 startActivity(i);
             }});
     }
@@ -116,5 +115,6 @@ public class TimerActivity extends AppCompatActivity {
 
         }
     }
+
 }
 
