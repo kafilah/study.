@@ -14,7 +14,6 @@ import android.content.Loader;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.AsyncTask;
-
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
@@ -37,7 +36,7 @@ import static android.Manifest.permission.READ_CONTACTS;
 /**
  * A login screen that offers login via email/password.
  */
-public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<Cursor> {
+public class RegisterActivity extends AppCompatActivity implements LoaderCallbacks<Cursor> {
 
     /**
      * Id to identity READ_CONTACTS permission request.
@@ -59,17 +58,21 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     // UI references.
     private AutoCompleteTextView mEmailView;
     private EditText mPasswordView;
+    private EditText mNameView;
     private View mProgressView;
     private View mLoginFormView;
 
+
     @Override
+    //this makes sense
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_register);
         // Set up the login form.
         mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
         populateAutoComplete();
         //stores password from edit text
+        mNameView = (EditText) findViewById(R.id.name);
         mPasswordView = (EditText) findViewById(R.id.password);
         mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
@@ -83,22 +86,11 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             }
         });
         //sign in button
-        Button mEmailSignInButton = (Button) findViewById(R.id.email_sign_in_button);
-        mEmailSignInButton.setOnClickListener(new OnClickListener() {
+        Button mEmailSignUpButton = (Button) findViewById(R.id.email_sign_up_button);
+        mEmailSignUpButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
                 attemptLogin();
-            }
-        });
-
-        //register button
-
-        Button mUserRegisterButton = (Button) findViewById(R.id.register_button);
-        mUserRegisterButton.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(LoginActivity.this, RegisterActivity.class);
-                startActivity(i);
             }
         });
 
@@ -109,6 +101,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     }
 
 
+    //this doesnt make sense to me
     private void populateAutoComplete() {
         if (!mayRequestContacts()) {
             return;
@@ -117,6 +110,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         getLoaderManager().initLoader(0, null, this);
     }
 
+    //this doesnt make sense to me
     private boolean mayRequestContacts() {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
             return true;
@@ -142,6 +136,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     /**
      * Callback received when a permissions request has been completed.
      */
+    //this doesn't make sense to me
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
                                            @NonNull int[] grantResults) {
@@ -158,7 +153,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
      * If there are form errors (invalid email, missing fields, etc.), the
      * errors are presented and no actual login attempt is made.
      */
-    //main class method, does bulk of the work
+    //main class method, does bulk of the work i understand this
     private void attemptLogin() {
         //if auth is successful
         if (mAuthTask != null) {
@@ -169,15 +164,24 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         // Reset errors.
         mEmailView.setError(null);
         mPasswordView.setError(null);
+        mNameView.setError(null);
 
         // Store values at the time of the login attempt.
         String email = mEmailView.getText().toString();
         String password = mPasswordView.getText().toString();
-
+        String name = mNameView.getText().toString();
         //sets other values necessary for the class
         boolean cancel = false;
         View focusView = null;
 
+        //Check for a valid name, needs to enter a name
+        if (!isNameValid(name)) {
+            //invalid password if password is too short
+            mNameView.setError(getString(R.string.error_invalid_name));
+            //brings attention to password field
+            focusView = mNameView;
+            cancel = true;
+        }
         // Check for a valid password, if the user entered one.
         if (!TextUtils.isEmpty(password) && !isPasswordValid(password)) {
             //invalid password if password is too short
@@ -194,7 +198,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             //brings attention to email field
             focusView = mEmailView;
             cancel = true;
-        //if email is invalid
+            //if email is invalid
         } else if (!isEmailValid(email)) {
             mEmailView.setError(getString(R.string.error_invalid_email));
             //brings attention to email field
@@ -223,6 +227,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
      * @param email
      * @return
      */
+    //i understand
     private boolean isEmailValid(String email) {
         //TODO: Replace this with more logic / justifications
         //but this basically says it is an email if it contains
@@ -237,16 +242,26 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
      * @param password
      * @return
      */
+    //i understand
     private boolean isPasswordValid(String password) {
         //TODO: Replace this with more justification
         //this basically states that it is not a password if length is less than 4
         return password.length() > 4 ;
     }
 
-    /**
+
+    //i created
+    private boolean isNameValid(String name) {
+        //TODO: Replace this with more justification
+        //this basically states that it is not a password if length is less than 4
+        return name.length() > 0 ;
+    }
+
+    /**DO NOT EDIT
      * Shows the progress UI and hides the login form.
      * brings up spinner to the foreground and removes the edit form
      */
+    //i do not understand
     @TargetApi(Build.VERSION_CODES.HONEYCOMB_MR2)
     private void showProgress(final boolean show) {
         // On Honeycomb MR2 we have the ViewPropertyAnimator APIs, which allow
@@ -281,6 +296,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     }
 
     @Override
+    //i do not understand
     public Loader<Cursor> onCreateLoader(int i, Bundle bundle) {
         return new CursorLoader(this,
                 // Retrieve data rows for the device user's 'profile' contact.
@@ -290,7 +306,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 // Select only email addresses.
                 ContactsContract.Contacts.Data.MIMETYPE +
                         " = ?", new String[]{ContactsContract.CommonDataKinds.Email
-                                                                     .CONTENT_ITEM_TYPE},
+                .CONTENT_ITEM_TYPE},
 
                 // Show primary email addresses first. Note that there won't be
                 // a primary email address if the user hasn't specified one.
@@ -298,6 +314,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     }
 
     @Override
+    //once the cursor has finished loading
     public void onLoadFinished(Loader<Cursor> cursorLoader, Cursor cursor) {
         List<String> emails = new ArrayList<>();
         cursor.moveToFirst();
@@ -310,6 +327,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     }
 
     @Override
+    //resets the loader
     public void onLoaderReset(Loader<Cursor> cursorLoader) {
 
     }
@@ -325,10 +343,11 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     }
 
 
+    //what does this email auto complete do?
     private void addEmailsToAutoComplete(List<String> emailAddressCollection) {
         //Create adapter to tell the AutoCompleteTextView what to show in its dropdown list.
         ArrayAdapter<String> adapter =
-                new ArrayAdapter<>(LoginActivity.this,
+                new ArrayAdapter<>(RegisterActivity.this,
                         android.R.layout.simple_dropdown_item_1line, emailAddressCollection);
 
         mEmailView.setAdapter(adapter);
@@ -338,6 +357,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
      * Represents an asynchronous login/registration task used to authenticate
      * the user.
      */
+
+    //i don't get this one either
     public class UserLoginTask extends AsyncTask<Void, Void, Boolean> {
 
         private final String mEmail;
@@ -349,6 +370,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         }
 
         @Override
+        //what is this?
         protected Boolean doInBackground(Void... params) {
             // TODO: attempt authentication against a network service.
 
@@ -372,13 +394,14 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         }
 
         @Override
+        //runs once everything has passed and we can proceed
         protected void onPostExecute(final Boolean success) {
             mAuthTask = null;
             showProgress(false);
 
             if (success) {
                 finish();
-                Intent i = new Intent(LoginActivity.this, TimerActivity.class);
+                Intent i = new Intent(RegisterActivity.this, TimerActivity.class);
                 startActivity(i);
             } else {
                 mPasswordView.setError(getString(R.string.error_incorrect_password));
@@ -387,6 +410,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         }
 
         @Override
+        //if at any point the loggin in process must be cancelled
         protected void onCancelled() {
             mAuthTask = null;
             showProgress(false);

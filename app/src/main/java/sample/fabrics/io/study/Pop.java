@@ -17,32 +17,26 @@ public class Pop extends Activity {
         User u = new User();
     
     @Override
-        protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        setContentView(R.layout.popwindow);
 //         submit button
         Button b_submit = (Button) findViewById(R.id.submitForm);
 
-//        b_submit.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-////                startActivity(new Intent(MainActivity.this,Pop.class));
-//                Toast.makeText(getApplicationContext(), "You clicked me!", Toast.LENGTH_LONG).show();
-//
-//            }
-//        });
+        b_submit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Pop.this, LogView.class));
+            }
+        });
 
-            super.onCreate(savedInstanceState);
+        DisplayMetrics dm = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(dm);
 
-            setContentView(R.layout.popwindow);
+        int width = dm.widthPixels;
+        int height = dm.heightPixels;
 
-            DisplayMetrics dm = new DisplayMetrics();
-            getWindowManager().getDefaultDisplay().getMetrics(dm);
-
-            int width = dm.widthPixels;
-            int height = dm.heightPixels;
-
-            getWindow().setLayout((int) (width*.8), (int) (height*.6));
+        getWindow().setLayout((int) (width*.8), (int) (height*.6));
         }
 
     // radio buttons
