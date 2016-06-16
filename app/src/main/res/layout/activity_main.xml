@@ -9,8 +9,10 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="sample.fabrics.io.study.MainActivity">
 
-    <TextView
+    <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        android:id="@+id/popButton"
+        android:text="Popup Menu Here!"/>
+
 </RelativeLayout>

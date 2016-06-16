@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">study.</string>
+    <string name="formTitle">Post-Study Reflection</string>
+    <string name="location_label">Location</string>
+    <string name="locationInput_label">Where did you study?</string>
+    <string name="pro_title_label">Productivity Rating</string>
+    <string name="ppl_title_label">How do you study with other people?</string>
+    <string name="notes_title_label">Notes</string>
+    <string name="notes_hint">Enter additional notes here (if you want to!).</string>
+    <string name="submitText">Submit</string>
 </resources>
