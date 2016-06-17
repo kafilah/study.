@@ -2,11 +2,14 @@
 
 buildscript {
     repositories {
+        // TODO(arthurthompson): mavenLocal() being used for preview but will be removed for release.
+        mavenLocal()
         jcenter()
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:2.1.2'
-
+        classpath 'com.google.gms:google-services:3.0.0'
+        classpath 'com.google.firebase.database.FirebaseDatabase'
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
@@ -14,6 +17,7 @@ buildscript {
 
 allprojects {
     repositories {
+        mavenLocal()
         jcenter()
     }
 }
